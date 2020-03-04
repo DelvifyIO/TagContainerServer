@@ -10,7 +10,6 @@ module.exports = function (app) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, OPTIONS, X-Requested-With, Content-Type, Accept, timezone, Authorization",);
         res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE",);
-        console.log(req.url, req.headers.authorization);
         next(); // make sure we go to the next routes and don't stop here
     });
 
@@ -24,7 +23,8 @@ module.exports = function (app) {
     app.use('/api/auth', require('./api/authentication'));
     app.use('/api/admin', require('./api/admin'));
     app.use('/api/client', require('./api/client'));
-    app.use('/api/map', require('./api/map'));
+    app.use('/api/tag', require('./api/tag'));
+    app.use('/api/script', require('./api/script'));
 
     // frontend routes =========================================================
     // route to handle all angular requests

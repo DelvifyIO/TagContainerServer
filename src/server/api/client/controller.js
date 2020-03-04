@@ -81,6 +81,17 @@ const updateClient = (req, res) => {
 };
 
 const removeClient = (req, res) => {
+    const { id } = req.params;
+    client.deleteOne({ _id: id })
+        .then(() => {
+            res.status(200).send({});
+        })
+        .catch((err) => {
+            res.status(400).send(err);
+        })
+};
+
+const removeClients = (req, res) => {
     const { ids } = req.body;
     client.deleteMany({ _id: { $in: ids } })
         .then(() => {
@@ -97,4 +108,5 @@ export {
     addClient,
     updateClient,
     removeClient,
+    removeClients,
 };

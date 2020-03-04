@@ -3,19 +3,17 @@ import database from '../index';
 let mongoose = require('mongoose');
 let timestampPlugin = require('../plugins/timestamp');
 
-let tags = new mongoose.Schema({
-   tag: String,
-});
-
-let mapSchema = new mongoose.Schema({
+let tagSchema = new mongoose.Schema({
+    name: String,
     path: String,
-    tags: [tags],
+    script: String,
+    delay: Number,
 });
 
 let clientSchema = new mongoose.Schema({
     name: String,
     website: String,
-    maps: [mapSchema],
+    tags: [tagSchema],
 });
 
 clientSchema.plugin(timestampPlugin);

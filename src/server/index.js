@@ -22,6 +22,8 @@ passportConfig(passport);
 app.use('/api', expressJwt({ secret: process.env.WEB_SECRET })
     .unless({ path: [
         '/api/auth/login',
+        { url: /^\/api\/tag/, methods: ['GET'] },
+        { url: /^\/api\/script/, methods: ['GET'] },
     ]}));
 
 // routes ==================================================
