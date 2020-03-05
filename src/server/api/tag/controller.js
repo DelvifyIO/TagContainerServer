@@ -56,10 +56,10 @@ const updateTag = (req, res) => {
         .then((client) => {
             const tag = client.tags.find((tag) => tag._id == id);
             if (tag) {
-                tag.path = path || tag.path;
-                tag.script = script || tag.script;
-                tag.name = name || tag.name;
-                tag.delay = delay || tag.delay;
+                tag.path = path !== undefined ? path : tag.path;
+                tag.script = script !== undefined ? script : tag.script;
+                tag.name = name !== undefined ? name : tag.name;
+                tag.delay = delay !== undefined ? delay : tag.delay;
                 return client.save();
             }
             throw new Error('Not found');
