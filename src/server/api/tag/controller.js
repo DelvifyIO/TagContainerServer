@@ -25,7 +25,7 @@ const getTags = (req, res) => {
     const { path } = req.query;
     client.findById(clientId)
         .then((client) => {
-            res.send(client.tags.filter((tag) => !path || matching(path, tag.path)));
+            res.send(client.tags.filter((tag) => !path || matching(path, tag.path || '')));
         })
         .catch((err) => {
             res.status(400).send(err);
