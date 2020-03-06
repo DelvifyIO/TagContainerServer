@@ -8,7 +8,10 @@ var methodOverride     = require('method-override');
 var path               = require('path');
 var passport           = require('passport');
 var { passportConfig } = require('../config/passort');
+var fs                 = require('fs');
+var https              = require('https');
 var app                = express();
+
 
 // configuration ===========================================
 var port = process.env.PORT || 8081; // set our port
@@ -30,6 +33,13 @@ app.use('/api', expressJwt({ secret: process.env.WEB_SECRET })
 require('./route')(app); // pass our application into our routes
 
 // start app ===============================================
-app.listen(port);
+if (process.env.NODE_ENV === 'production') {
+    https.createServer({
+        key: fs.readFileSync('ssl/tag.delvify.io.key'),
+        cert: fs.readFileSync('ssl/bundle.crt'),
+    }, app).listen(port);
+} else {
+    app.listen(port);
+}
 console.log('Listening to: ' + port); 			// shoutout to the user
 exports = module.exports = app; 						// expose app
