@@ -10,6 +10,8 @@ const getScript = (req, res) => {
 
     return res.send("" +
         "window.onload = function () {\n" +
+        "    let timelapse = 0;\n" +
+        "    const timer = setInterval(function () { timelapse++; }, 1);\n" +
         "    const API_HOST = \"" + API_HOST + "\";\n" +
         "    const CLIENT_ID = \"" + clientId + "\";\n" +
         "    const path = window.location.pathname;\n" +
@@ -25,7 +27,8 @@ const getScript = (req, res) => {
         "            container.setAttribute(\"id\", \"delvifyTagContainer\");" +
         "            container.setAttribute(\"style\", \"display:none;\");" +
         "            result.forEach(function (tag) {\n" +
-        "                let delay = tag.delay ? tag.delay * 1000 : 0;\n" +
+        "                clearInterval(timer);\n" +
+        "                let delay = tag.delay ? Math.max(tag.delay * 1000 - timelapse, 0) : 0;\n" +
         "                const commentTags = tag.script.match(/^(<!--)((.|\\n)*?)(-->)/gm) || []\n" +
         "                const scriptTags = tag.script.match(/^(<script)((.|\\n)*?)(\\/script>)/gm) || []\n" +
         "                const noscriptTags = tag.script.match(/^(<noscript)((.|\\n)*?)(\\/noscript>)/gm) || []\n" +

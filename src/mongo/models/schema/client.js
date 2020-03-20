@@ -12,7 +12,7 @@ let tagSchema = new mongoose.Schema({
 
 let clientSchema = new mongoose.Schema({
     name: String,
-    website: String,
+    websites: [String],
     tags: [tagSchema],
 });
 

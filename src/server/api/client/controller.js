@@ -69,8 +69,8 @@ const addClient = (req, res) => {
 
 const updateClient = (req, res) => {
     const { id } = req.params;
-    const { name, website } = req.body;
-    const updates = _.pickBy({ name, website}, (value) => !!value);
+    const { name, websites } = req.body;
+    const updates = _.pickBy({ name, websites}, (value) => !!value);
     client.findOneAndUpdate({ _id: id }, updates, { new: true })
         .then((updatedClient) => {
             res.send(updatedClient);
