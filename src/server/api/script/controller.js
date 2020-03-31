@@ -14,9 +14,9 @@ const getScript = (req, res) => {
         "    const timer = setInterval(function () { timelapse++; }, 1);\n" +
         "    const API_HOST = \"" + API_HOST + "\";\n" +
         "    const CLIENT_ID = \"" + clientId + "\";\n" +
-        "    const path = window.location.pathname;\n" +
+        "    const href = window.location.href;\n" +
         "    const Http = new XMLHttpRequest();\n" +
-        "    const url = API_HOST + '/tag/' + CLIENT_ID + '?path=' + path;\n" +
+        "    const url = API_HOST + '/tag/' + CLIENT_ID + '?path=' + href;\n" +
         "    Http.open(\"GET\", url);\n" +
         "    Http.send();\n" +
         "\n" +
