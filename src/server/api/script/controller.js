@@ -78,7 +78,8 @@ const getScript = (req, res) => {
 
 const checkScript = (req, res) => {
     console.log('checkScript');
-    return res.send('OK');
+    const testScript = "<script>console.log('tessst');</script>";
+    return res.send(testScript);
 };
 
 export {
