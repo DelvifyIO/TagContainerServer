@@ -91,4 +91,5 @@ const getWidgetJs = (req, res) => {
 export {
     checkScript,
     getScript,
+    getWidgetJs,
 };
