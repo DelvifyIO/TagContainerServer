@@ -78,7 +78,7 @@ const getScript = (req, res) => {
 
 const checkScript = (req, res) => {
     console.log('checkScript');
-    const testScript = "<script>console.log('tessst');</script>";
+    const testScript = "console.log('tessst');";
     return res.send(testScript);
 };
 
