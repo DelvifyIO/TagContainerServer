@@ -10,6 +10,7 @@ router.use(function(req, res, next) {
 });
 
 router.get('/check', controller.checkScript);
+router.get('/widget', controller.getWidgetJs);
 router.get('/:clientId', controller.getScript);
 
 module.exports = router;

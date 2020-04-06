@@ -1,4 +1,5 @@
 import {client} from '../../../mongo/models/schema';
+import widgetJs from './widget';
 
 const paginations = ['limit', 'offset'];
 const sorts = ['sortBy', 'order'];
@@ -80,6 +81,11 @@ const checkScript = (req, res) => {
     console.log('checkScript');
     const testScript = "console.log('tessst');";
     return res.send(testScript);
+};
+
+const getWidgetJs = (req, res) => {
+    const merchantid = req.query.merchantid;
+    res.send(widgetJs(merchantid));
 };
 
 export {
