@@ -1,5 +1,4 @@
 import {client} from '../../../mongo/models/schema';
-import widgetJs from './widget';
 
 const paginations = ['limit', 'offset'];
 const sorts = ['sortBy', 'order'];
@@ -8,9 +7,8 @@ const sorts = ['sortBy', 'order'];
 const getScript = (req, res) => {
     const API_HOST = process.env.API_HOST;
     const { clientId } = req.params;
-
     return res.send("" +
-        "window.onload = function () {\n" +
+        "function runDelvifyTagScript() {\n" +
         "    let timelapse = 0;\n" +
         "    const timer = setInterval(function () { timelapse++; }, 1);\n" +
         "    const API_HOST = \"" + API_HOST + "\";\n" +
@@ -74,6 +72,7 @@ const getScript = (req, res) => {
         "        }\n" +
         "    }\n" +
         "};" +
+        "runDelvifyTagScript();" +
         "");
 };
 
@@ -83,13 +82,7 @@ const checkScript = (req, res) => {
     return res.send(testScript);
 };
 
-const getWidgetJs = (req, res) => {
-    const merchantid = req.query.merchantid;
-    res.send(widgetJs(merchantid));
-};
-
 export {
     checkScript,
     getScript,
-    getWidgetJs,
 };
